@@ -43,7 +43,6 @@ return { -- LSP Configuration & Plugins
     -- If you're wondering about lsp vs treesitter, you can check out the wonderfully
     -- and elegantly composed help section, `:help lsp-vs-treesitter`
 
-
     -- LSP servers and clients are able to communicate to each other what features they support.
     --  By default, Neovim doesn't support everything that is in the LSP specification.
     --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
@@ -61,7 +60,7 @@ return { -- LSP Configuration & Plugins
     --  - settings (table): Override the default settings passed when initializing the server.
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 
-    require 'lspconfig'.lua_ls.setup {
+    require("lspconfig").lua_ls.setup({
       settings = {
         Lua = {
           completion = {
@@ -71,8 +70,9 @@ return { -- LSP Configuration & Plugins
           -- diagnostics = { disable = { 'missing-fields' } },
         },
       },
-    }
-    require 'lspconfig'.nil_ls.setup {}
+    })
+    require("lspconfig").nil_ls.setup({})
+    require("lspconfig").yamlls.setup({})
 
     -- Ensure the servers and tools above are installed
     --  To check the current status of installed tools and/or manually install
@@ -88,7 +88,7 @@ return { -- LSP Configuration & Plugins
       require("mason-tool-installer").setup({
         ensure_installed = {
           "stylua", -- Used to format Lua code
-        }
+        },
       })
       require("mason-lspconfig").setup({
         automatic_installation = true,
