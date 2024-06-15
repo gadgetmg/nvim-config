@@ -20,4 +20,8 @@ vim.opt.rtp:prepend(lazypath)
 --    :Lazy update
 --
 --  Loads all plugins (*.lua) from "plugins" directory
-require("lazy").setup({ import = "plugins" })
+require("lazy").setup("plugins", {
+  change_detection = {
+    enabled = false,
+  },
+})
