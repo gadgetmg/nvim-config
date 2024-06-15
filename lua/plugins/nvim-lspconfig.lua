@@ -16,6 +16,12 @@ return { -- LSP Configuration & Plugins
     -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
     { "folke/neodev.nvim", opts = {} },
+
+    -- schemastore
+    "b0o/schemastore.nvim",
+
+    -- yaml-companion for yaml-language-server
+    { "msvechla/yaml-companion.nvim", branch = "kubernetes_crd_detection" },
   },
   config = function()
     -- Brief aside: **What is LSP?**
@@ -72,7 +78,25 @@ return { -- LSP Configuration & Plugins
       },
     })
     require("lspconfig").nil_ls.setup({})
-    require("lspconfig").yamlls.setup({})
+    local yamlls_cfg = require("yaml-companion").setup({
+      -- Additional schemas
+      schemas = {},
+      builtin_matchers = {
+        kubernetes = { enabled = true },
+      },
+      lspconfig = {
+        settings = {
+          yaml = {
+            -- schemas = {
+            --   ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+            --   ["https://json.schemastore.org/kustomization.json"] = "kustomization.yaml",
+            -- },
+            schemas = require("schemastore").yaml.schemas({}),
+          },
+        },
+      },
+    })
+    require("lspconfig").yamlls.setup(yamlls_cfg)
 
     -- Ensure the servers and tools above are installed
     --  To check the current status of installed tools and/or manually install
