@@ -31,7 +31,13 @@ return { -- Collection of various small independent plugins/modules
       return "%-2v"
     end
 
-    -- ... and there is more!
-    --  Check out: https://github.com/echasnovski/mini.nvim
+    -- Tabline
+    require("mini.tabline").setup()
+
+    -- Autopairs
+    require("mini.pairs").setup()
+
+    -- Start screen
+    require("mini.starter").setup()
   end,
 }
