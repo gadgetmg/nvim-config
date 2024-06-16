@@ -7,7 +7,6 @@
 
 return { -- Fuzzy Finder (files, lsp, etc)
   "nvim-telescope/telescope.nvim",
-  event = "VimEnter",
   branch = "0.1.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -68,6 +67,10 @@ return { -- Fuzzy Finder (files, lsp, etc)
         ["ui-select"] = {
           require("telescope.themes").get_dropdown(),
         },
+        file_browser = {
+          -- disables netrw and use telescope-file-browser in its place
+          hijack_netrw = true,
+        },
       },
     })
 
@@ -111,5 +114,10 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set("n", "<leader>sn", function()
       builtin.find_files({ cwd = vim.fn.stdpath("config") })
     end, { desc = "[S]earch [N]eovim files" })
+
+    -- Launch file browser
+    vim.keymap.set("n", "<space>e", function()
+      require("telescope").extensions.file_browser.file_browser()
+    end, { desc = "[E]xplore Files" })
   end,
 }
