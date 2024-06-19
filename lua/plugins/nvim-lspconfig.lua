@@ -97,6 +97,26 @@ return { -- LSP Configuration & Plugins
       },
     })
     require("lspconfig").yamlls.setup(yamlls_cfg)
+    require("lspconfig").powershell_es.setup({})
+    require("lspconfig").ansiblels.setup({})
+    require("lspconfig").bashls.setup({})
+    require("lspconfig").cssls.setup({})
+    require("lspconfig").docker_compose_language_service.setup({})
+    require("lspconfig").dockerls.setup({})
+    require("lspconfig").dockerls.setup({})
+    require("lspconfig").html.setup({})
+    require("lspconfig").hyprls.setup({})
+    require("lspconfig").jsonls.setup({})
+    require("lspconfig").jsonnet_ls.setup({})
+    require("lspconfig").pylsp.setup({})
+    require("lspconfig").pylyzer.setup({})
+    require("lspconfig").pylyzer.setup({})
+    require("lspconfig").pyright.setup({})
+    require("lspconfig").rust_analyzer.setup({})
+    require("lspconfig").sqls.setup({})
+    require("lspconfig").typos_lsp.setup({})
+    require("lspconfig").vimls.setup({})
+    require("lspconfig").marksman.setup({})
 
     -- Ensure the servers and tools above are installed
     --  To check the current status of installed tools and/or manually install
